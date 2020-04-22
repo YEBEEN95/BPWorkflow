@@ -1,0 +1,10 @@
+/* Enter your custom styles here */
+
+.sk_siltron_logo {
+    background: url("../resources/img/Logo.png")  no-repeat;
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    height: 31px;
+    width: 90px;
+}

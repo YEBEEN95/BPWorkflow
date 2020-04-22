@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog resizable="true" 
+        draggable="true" 
+        stretch="false" 
+        busy="{mainView>/busy}" 
+        busyIndicatorDelay="0" 
+        title="{i18n>tlSelectVendorCustomer}" 
+        contentWidth="30%">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm editable="false" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="{i18n>lbSelectType}" />
+                         <Select selectedKey="{mainView>/vendorSelectOption/selectBPtype}" 
+                            change="onPAI"
+                            app:fcCode="fcSelectBPType">
+                            <items>
+                                <core:Item key="vendor" 
+                                    text="{i18n>fldVendor}" />
+                                <core:Item key="customer" 
+                                    text="{i18n>fldCustomer}" />
+                            </items>
+                        </Select>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="Search" 
+                press="onPAI" 
+                app:fcCode="fcSearchVendor" />
+
+            <Button text="Cancel" 
+                press="onPAI" 
+                app:fcCode="fcCancelSearch" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,286 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page title="{i18n>tlQuickStepPage}" 
+        class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer" 
+        showNavButton="true" 
+        navButtonPress="onPAI">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <form:SimpleForm title="{i18n>tl1GeneralData}" 
+                    editable="true" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <Label text="{i18n>lbAdditionalSuppliername}" 
+                        required="true"/>
+                    <Input value="{detailView>/GeneralData/FirstName}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeAddSuppName">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                </form:SimpleForm>
+                <form:SimpleForm title="{i18n>tl2Address}" 
+                    editable="true" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <Label text="{i18n>lbStreet}" 
+                        required="true"/>
+                    <Input value="{detailView>/Address/StreetName}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeStreet">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbHouseNumber}" 
+                        required="true"/>
+                    <Input type="Number" 
+                        placeholder="Enter the digit.." 
+                        value="{detailView>/Address/HouseNumber}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeHouseNumber">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbPostalCode}" 
+                        required="true"/>
+                    <Input type="Number" 
+                        placeholder="Enter the digit.." 
+                        value="{detailView>/Address/PostalCode}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangePostalCode">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+
+                    <Label text="{i18n>lbCountry}" 
+                        required="true" />
+                    <Input value="{detailView>/Address/Country}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeCountry">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbRegion}" 
+                        required="true" />
+                    <Input value="{detailView>/Address/Region}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeRegion">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbTaxJurisdictionCode}" 
+                        required="true"/>
+                    <Input value="{detailView>/Address/TaxJurisdiction}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeTaxJurCode">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                </form:SimpleForm>
+                <form:SimpleForm title="{i18n>tl3StandardCommunication}" 
+                    editable="true" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <Label text="{i18n>lbCellPhoneCountry}" 
+                        required="true"/>
+                    <Input value="{detailView>/StandardCommunication/DestLocationCountryCellPhone}" 
+                        placeholder="EN" 
+                        change="onPAI" 
+                        app:fcCode="fcChangePhoneCountry">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                </form:SimpleForm>
+                <form:SimpleForm title="{i18n>tl4BankAccount}" 
+                    editable="true" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <Label text="{i18n>lbBankCountry}" 
+                        required="true"/>
+                    <Input value="{detailView>/BankAccount/BankCountryKey}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeBankCountry">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbBankKey}" 
+                        required="true"/>
+                    <Input value="{detailView>/BankAccount/BankIdentification}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeBankKey">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbAccountNumber}" 
+                        required="true"/>
+                    <Input type="Number" 
+                        placeholder="Enter the digit.." 
+                        value="{detailView>/BankAccount/BankNumber}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeAccountNumber">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbAccountHolder}" 
+                        required="true"/>
+                    <Input value="{detailView>/BankAccount/BankAccountHolderName}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeAccountHolder">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                </form:SimpleForm>
+                <form:SimpleForm title="{i18n>tl5PaymentTerms}" 
+                    editable="true" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <Label text="{i18n>lbTermsofPayment}" 
+                        required="true"/>
+                    <Input value="{detailView>/PaymentTerms/PaymentTerms}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeTermPayment">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                </form:SimpleForm>
+                <form:SimpleForm title="{i18n>tl6PurchasingOrganizations}" 
+                    editable="true" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <Label text="{i18n>lbPurchasingOrganizations}" 
+                        required="true"/>
+                    <Input value="{detailView>/PurchasingOrganizations/PurchasingOrganization}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangePurchasingOrg">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbPurchasingGroup}" 
+                        required="true"/>
+                    <Input value="{detailView>/PurchasingOrganizations/PurchasingGroup}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangePurchasingGroup">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                    <Label text="{i18n>lbTermsofPaymentPur}" 
+                        required="true"/>
+                    <Input value="{detailView>/PurchasingOrganizations/PaymentTermsPurchasing}" 
+                        change="onPAI" 
+                        app:fcCode="fcChangeTermPaymentP">
+                        <layoutData>
+                            <l:GridData span="XL2 L6 M4 S4" />
+                        </layoutData>
+                    </Input>
+                </form:SimpleForm>
+            </VBox>
+        </content>
+        <customData>
+            <core:CustomData key="fcCode" 
+                value="fcQckStepNav" 
+                writeToDom="true"/>
+        </customData>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="{i18n>btnExamine}" 
+							press="onPAI" 
+                            type="Emphasized"
+							app:fcCode="fcQckStepExamine" 
+							enabled="true" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</core:FragmentDefinition>

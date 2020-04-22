@@ -1,0 +1,86 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <WizardStep id="GeneralData" 
+        title="{i18n>tlGeneralData}" 
+        nextStep="Address" 
+        complete="onPAI" 
+        validated="{detailView>/WizardValidate/GeneralData}" 
+        icon="sap-icon://approvals" 
+        app:fcCode="fcCompleteStep">
+        <OverflowToolbar>
+            <Label text="{i18n>lbBPNumber}: "/>
+            <Text class="sapUiMediumMarginEnd" 
+                text="{detailView>/GeneralData/BusinessPartner}"/>
+            <Label text="{i18n>lbBPType}: "/>
+            <Text text="{detailView>/BPType}"/>
+            <ToolbarSpacer/>
+            <Button text="{i18n>btnQuickStep}" 
+                class="sapUiTinyMarginEnd" 
+                press="onPAI" 
+                app:fcCode="fcQckStep"/>
+        </OverflowToolbar>
+        <VBox class="sapUiSmallMargin">
+            <form:SimpleForm editable="true" 
+                layout="ResponsiveGridLayout" 
+                labelSpanXL="3" 
+                labelSpanL="2" 
+                labelSpanM="4" 
+                labelSpanS="12" 
+                adjustLabelSpan="false" 
+                emptySpanXL="0" 
+                emptySpanL="0" 
+                emptySpanM="0" 
+                emptySpanS="0" 
+                columnsXL="1" 
+                columnsL="1" 
+                columnsM="1" 
+                singleContainerFullSize="false">
+
+                <Label text="{i18n>lbSupplierName}"/>
+                <Input value="{detailView>/GeneralData/Supplier}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbAdditionalSuppliername}" 
+                    required="true"/>
+                <Input value="{detailView>/GeneralData/FirstName}" 
+                    valueState="{= ${detailView>/GeneralData/FirstName} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeAddSuppName">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbVendorAccountGroup}"/>
+                <Input value="{detailView>/GeneralData/SupplierAccountGroup}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbBPGrouping}"/>
+                <Input type="Text" 
+                    value="{detailView>/GeneralData/BusinessPartnerGrouping}" 
+                    showValueHelp="true" 
+                    valueHelpOnly="true" 
+                    valueHelpRequest="onF4BPGrouping">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbSearchTerm1}"/>
+                <Input value="{detailView>/GeneralData/SearchTerm1}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+            </form:SimpleForm>
+        </VBox>
+
+    </WizardStep>
+</core:FragmentDefinition>

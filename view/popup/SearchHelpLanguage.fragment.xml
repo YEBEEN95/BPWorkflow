@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <SelectDialog 
+        noDataText="Not Found" 
+        title="Select Language" 
+        search="handleSearch" 
+        confirm="handleClose" 
+        cancel="handleClose" 
+        showClearButton="false"
+        items="{detailView>/BPLanguageData}">
+            <StandardListItem 
+                selected="true"
+                title="{detailView>Name}" 
+                info="{detailView>Description}" 
+                icon="sap-icon://globe" 
+                iconDensityAware="false" 
+                iconInset="false" 
+                type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

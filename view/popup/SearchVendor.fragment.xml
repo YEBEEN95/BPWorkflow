@@ -1,0 +1,527 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:t="sap.ui.table" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog id="BPSelect" 
+		showHeader="false" 
+		contentWidth="100%" 
+		contentHeight="100%">
+		<NavContainer id="navSearchVendor" 
+			class="navContainerControl sapUiSmallMarginBegin sapUiSmallMarginBottom">
+			<Page id="navSearchVendor__search" 
+				title="{i18n>tlSearchVendor}">
+				<subHeader>
+					<OverflowToolbar>
+						<SearchField width="60%" 
+						liveChange="onPAI"
+							search="onPAI" 
+							app:fcCode="fcBPSearchfield" />
+					</OverflowToolbar>
+				</subHeader>
+				<Panel>
+				<Table id="tabBPInfo" 
+					itemPress="onPAI" 
+					mode="None" 
+					alternateRowColors="true" 
+					app:fcCode="fcSelectBP" 
+					items="{bpInfo>/results}">
+					<columns>
+						<Column width="6rem" 
+							hAlign="Center">
+							<header>
+								<Text text="{i18n>fldBPNumber}" />
+							</header>
+						</Column>
+						<Column hAlign="Center" 
+							visible="{= ${mainView>/vendorSelectOption/selectBPtype} === 'vendor' }">
+							<header>
+								<Text text="{i18n>fldVendorNumber}" />
+							</header>
+						</Column>
+						<Column hAlign="Center" 
+							visible="{= ${mainView>/vendorSelectOption/selectBPtype} === 'customer' }">
+							<header>
+								<Text text="{i18n>fldCustomerNumber}" />
+							</header>
+						</Column>
+						<Column hAlign="Center">
+							<header>
+								<Text text="{i18n>fldName}" />
+							</header>
+						</Column>
+						<Column hAlign="Center">
+							<header>
+								<Text text="{i18n>fldCountry}" />
+							</header>
+						</Column>
+						<Column hAlign="Center">
+							<header>
+								<Text text="{i18n>fldCity}" />
+							</header>
+						</Column>
+						<Column hAlign="Center">
+							<header>
+								<Text text="{i18n>fldPhone}" />
+							</header>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation" >
+							<cells>
+								<Text text="{bpInfo>BusinessPartner}" />
+								<Text text="{bpInfo>Supplier}"  />
+								<Text text="{bpInfo>Customer}" />
+								<Text text="{bpInfo>BusinessPartnerName}" />
+								<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/Country}" />
+								<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/CityName}" />
+								<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/to_MobilePhoneNumber/CellPhoneNumber}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				</Panel>
+			</Page>
+			<Page id="navSearchVendor__details" 
+				showNavButton="true" 
+				navButtonPress="onPAI" 
+				app:fcCode="fcNavSearchVendor" 
+				title="{i18n>tlSearchVendorDetail}">
+				<Panel id="panelBPDetail">
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="3" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="{i18n>tlGeneralData}">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbSupplierName}">
+										<f:fields>
+											<Text text="{bpInfo>Supplier}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbAdditionalSuppliername}">
+										<f:fields>
+											<Text text="{bpInfo>FirstName}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbVendorAccountGroup}">
+										<f:fields>
+											<Text text="{bpInfo>to_Supplier/SupplierAccountGroup}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title=" ">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbBPGrouping}">
+										<f:fields>
+											<Text text="{bpInfo>BusinessPartnerGrouping}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbSearchTerm1}">
+										<f:fields>
+											<Text text="{bpInfo>SearchTerm1}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</Panel>
+				<Panel>
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="{i18n>tlAddress}">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbStreet}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/StreetName}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbHouseNumber}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/HouseNumber}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbPostalCode}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/PostalCode}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbCity}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/CityName}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbPostalOfficePostalCode}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/POBoxPostalCode}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title=" ">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbPostBox}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/POBox}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbCountry}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/Country}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbRegion}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/Region}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbTaxJurisdictionCode}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/TaxJurisdiction}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</Panel>
+				<Panel>
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="{i18n>tlStandardCommunication}">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbLanguage}">
+										<f:fields>
+											<Text text="{bpInfo>CorrespondenceLanguage}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbCellPhoneCountry}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/to_MobilePhoneNumber/DestinationLocationCountry}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbCellPhone}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/to_MobilePhoneNumber/PhoneNumber}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbFaxCountry}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/to_FaxNumber/FaxCountry}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title=" ">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbTelephoneCountry}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/to_PhoneNumber/DestinationLocationCountry}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbTelephone}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/to_PhoneNumber/PhoneNumber}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbEmail}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerAddress/results/0/to_EmailAddress/EmailAddress}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</Panel>
+				<Panel>
+					<f:Form>
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="{i18n>tlBankAccount}">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbBankCountry}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerBank/results/0/BankCountryKey}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbBankKey}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerBank/results/0/BankIdentification}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbAccountNumber}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerBank/results/0/BankNumber}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbAccountHolder}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerBank/results/0/BankAccountHolderName}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title=" ">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbAccountName}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerBank/results/0/BankAccountName}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbIBAN}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerBank/results/0/IBAN}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbControlKey}">
+										<f:fields>
+											<Text text="{bpInfo>to_BusinessPartnerBank/results/0/BankControlKey}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</Panel>
+				<Panel>
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:FormContainer title="{i18n>tlPaymentTerms}">
+							<f:formElements>
+								<f:FormElement label="{i18n>lbTermsofPayment}">
+									<f:fields>
+										<Text text="{bpInfo>to_Customer/results/0/to_CustomerCompany/PaymentTerms}" />
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:Form>
+				</Panel>
+				<Panel>
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:FormContainer title="{i18n>tlTaxNumbers}">
+							<f:formElements>
+								<f:FormElement label="{i18n>lbTaxCategory}">
+									<f:fields>
+										<Text text="{bpInfo>to_BusinessPartnerTax/results/0/BPTaxType}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>lbTaxNumber}">
+									<f:fields>
+										<Text text="{bpInfo>to_BusinessPartnerTax/results/0/BPTaxNumber}" />
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:Form>
+				</Panel>
+				<Panel>
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer title="Purchasing Organizations">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbPurchasingOrganizations}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/PurchasingOrganization}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbPurchasingGroup}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/PurchasingGroup}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbOrderCurrency}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/PurchaseOrderCurrency}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbTermsofPaymentPur}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/PaymentTerms}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer title=" ">
+								<f:formElements>
+									<f:FormElement label="{i18n>lbIncoterms}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/IncotermsClassification}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbIncotermsLocation1}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/IncotermsLocation1}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbIncotermsLocation2}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/IncotermsLocation2}" />
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>lbGoodsReceipt-BasedInvoiceVerification}">
+										<f:fields>
+											<Text text="{bpInfo>to_supplier/to_SupplierPurchasingOrg/results/0/InvoiceIsGoodsReceiptBased}" />
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</Panel>
+				<Panel>
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+								labelSpanL="4" 
+								labelSpanM="6" 
+								labelSpanS="12" 
+								adjustLabelSpan="false" 
+								emptySpanXL="0" 
+								emptySpanL="0" 
+								emptySpanM="0" 
+								emptySpanS="0" 
+								columnsXL="2" 
+								columnsL="2" 
+								columnsM="2" 
+								singleContainerFullSize="false" />
+						</f:layout>
+						<f:FormContainer title="Company Code">
+							<f:formElements>
+								<f:FormElement label="{i18n>lbReconciliationAccount}">
+									<f:fields>
+										<Text text="{bpInfo>to_supplier/to_SupplierCompany/results/0/ReconciliationAccount}" />
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>lbTermsofPaymentAc}">
+									<f:fields>
+										<Text text="{bpInfo>to_supplier/to_SupplierCompany/results/0/PaymentTerms}" />
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:Form>
+				</Panel>
+				<footer>
+					<OverflowToolbar>
+						<Button text="{i18n>btnRequestModification}" 
+							type="Emphasized" 
+							visible="{= ${mainView>/buttonStatus} === 'find' }" 
+							press="onPAI" 
+							app:fcCode="fcRequestModification"/>
+						<Button text="{i18n>btnCreateWithTemplate}" 
+							visible="{= ${mainView>/buttonStatus} === 'createTemplate' }" 
+							type="Emphasized" 
+							press="onPAI" 
+							app:fcCode="fcCreateVendorTemplate"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</NavContainer>
+	</Dialog>
+</core:FragmentDefinition>

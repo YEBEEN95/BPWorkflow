@@ -1,0 +1,117 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <WizardStep id="Address" 
+        title="{i18n>tlAddress}" 
+        nextStep="StandardCommunication" 
+        complete="onPAI" 
+        validated="{detailView>/WizardValidate/Address}" 
+        app:fcCode="fcCompleteStep">
+        <VBox class="sapUiSmallMargin">
+            <form:SimpleForm editable="true" 
+                layout="ResponsiveGridLayout" 
+                labelSpanXL="3" 
+                labelSpanL="2" 
+                labelSpanM="4" 
+                labelSpanS="12" 
+                adjustLabelSpan="false" 
+                emptySpanXL="0" 
+                emptySpanL="0" 
+                emptySpanM="0" 
+                emptySpanS="0" 
+                columnsXL="1" 
+                columnsL="1" 
+                columnsM="1" 
+                singleContainerFullSize="false">
+                <Label text="{i18n>lbStreet}" 
+                    required="true"/>
+                <Input value="{detailView>/Address/StreetName}" 
+                    valueState="{= ${detailView>/Address/StreetName} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeStreet">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbHouseNumber}" 
+                    required="true"/>
+                <Input type="Number" 
+                    placeholder="Enter the digit.." 
+                    value="{detailView>/Address/HouseNumber}" 
+                    valueState="{= ${detailView>/Address/HouseNumber} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeHouseNumber">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbPostalCode}" 
+                    required="true"/>
+                <Input type="Number" 
+                    placeholder="Enter the digit.." 
+                    value="{detailView>/Address/PostalCode}" 
+                    valueState="{= ${detailView>/Address/PostalCode} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangePostalCode">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbCity}"/>
+                <Input value="{detailView>/Address/CityName}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbPostalOfficePostalCode}"/>
+                <Input value="{detailView>/Address/POBoxPostalCode}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbPostBox}"/>
+                <Input value="{detailView>/Address/POBox}" 
+                    type="Number" 
+                    placeholder="Enter the digit..">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbCountry}" 
+                    required="true" />
+                <Input value="{detailView>/Address/Country}" 
+                    valueState="{= ${detailView>/Address/Country} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeCountry">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbRegion}" 
+                    required="true" />
+                <Input value="{detailView>/Address/Region}" 
+                    valueState="{= ${detailView>/Address/Region} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeRegion">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbTaxJurisdictionCode}" 
+                    required="true"/>
+                <Input value="{detailView>/Address/TaxJurisdiction}" 
+                    valueState="{= ${detailView>/Address/TaxJurisdiction} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeTaxJurCode">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+            </form:SimpleForm>
+        </VBox>
+    </WizardStep>
+</core:FragmentDefinition>

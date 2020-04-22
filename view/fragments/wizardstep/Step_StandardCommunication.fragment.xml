@@ -1,0 +1,89 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <WizardStep id="StandardCommunication" 
+        title="{i18n>tlStandardCommunication}" 
+        nextStep="BankAccount" 
+        complete="onPAI" 
+        validated="{detailView>/WizardValidate/StandardCommunication}" 
+        icon="sap-icon://approvals" 
+        app:fcCode="fcCompleteStep">
+        <VBox class="sapUiSmallMargin">
+            <form:SimpleForm editable="true" 
+                layout="ResponsiveGridLayout" 
+                labelSpanXL="3" 
+                labelSpanL="2" 
+                labelSpanM="4" 
+                labelSpanS="12" 
+                adjustLabelSpan="false" 
+                emptySpanXL="0" 
+                emptySpanL="0" 
+                emptySpanM="0" 
+                emptySpanS="0" 
+                columnsXL="1" 
+                columnsL="1" 
+                columnsM="1" 
+                singleContainerFullSize="false">
+                <Label text="{i18n>lbLanguage}"/>
+                <Input value="EN" 
+                    showValueHelp="true" 
+                    valueHelpOnly="true" 
+                    valueHelpRequest="onF4Language">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbCellPhoneCountry}" 
+                    required="true"/>
+                <Input value="{detailView>/StandardCommunication/DestLocationCountryCellPhone}" 
+                    valueState="{= ${detailView>/StandardCommunication/DestLocationCountryCellPhone} ? 'None' : 'Error' }" 
+                    placeholder="EN" 
+                    change="onPAI" 
+                    app:fcCode="fcChangePhoneCountry">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbCellPhone}"/>
+                <Input value="{detailView>/StandardCommunication/CellPhoneNumber}" 
+                    type="Number" 
+                    placeholder="Enter the digit..">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbFaxCountry}"/>
+                <Input value="{detailView>/StandardCommunication/FaxCountry}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbTelephoneCountry}"/>
+                <Input value="{detailView>/StandardCommunication/DestLocationCountryTelephone}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbTelephone}"/>
+                <Input value="{detailView>/StandardCommunication/TelePhoneNumber}" 
+                    type="Number" 
+                    placeholder="Enter the digit..">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbEmail}"/>
+                <Input type="Email" 
+                    value="{detailView>/StandardCommunication/EmailAddress}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+            </form:SimpleForm>
+        </VBox>
+    </WizardStep>
+</core:FragmentDefinition>

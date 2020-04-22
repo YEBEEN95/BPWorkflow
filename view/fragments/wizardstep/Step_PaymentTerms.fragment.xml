@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <WizardStep id="PaymentTerms" 
+        title="{i18n>tlPaymentTerms}" 
+        nextStep="TaxNumbers" 
+        complete="onPAI" 
+        validated="{detailView>/WizardValidate/PaymentTerms}" 
+        icon="sap-icon://approvals" 
+        app:fcCode="fcCompleteStep">
+        <VBox class="sapUiSmallMargin">
+            <form:SimpleForm editable="true" 
+                layout="ResponsiveGridLayout" 
+                labelSpanXL="3" 
+                labelSpanL="2" 
+                labelSpanM="4" 
+                labelSpanS="12" 
+                adjustLabelSpan="false" 
+                emptySpanXL="0" 
+                emptySpanL="0" 
+                emptySpanM="0" 
+                emptySpanS="0" 
+                columnsXL="1" 
+                columnsL="1" 
+                columnsM="1" 
+                singleContainerFullSize="false">
+                <Label text="{i18n>lbTermsofPayment}" 
+                    required="true"/>
+                <Input value="{detailView>/PaymentTerms/PaymentTerms}" 
+                    valueState="{= ${detailView>/PaymentTerms/PaymentTerms} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeTermPayment">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+            </form:SimpleForm>
+        </VBox>
+    </WizardStep>
+</core:FragmentDefinition>

@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <SelectDialog 
+        noDataText="Not Found" 
+        title="Select BPGrouping" 
+        search="handleSearch" 
+        confirm="onF4SelectData" 
+        cancel="handleClose" 
+        showClearButton="false"
+        items="{detailView>/BPGroupingData}">
+            <StandardListItem 
+                selected="true"
+                title="{detailView>Name}" 
+                description="{detailView>Description}"
+                icon="sap-icon://group" 
+                iconDensityAware="false" 
+                iconInset="false"  
+                type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

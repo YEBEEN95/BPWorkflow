@@ -1,0 +1,94 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <WizardStep id="BankAccount" 
+        title="{i18n>tlBankAccount}" 
+        nextStep="PaymentTerms" 
+        complete="onPAI" 
+        validated="{detailView>/WizardValidate/BankAccount}" 
+        icon="sap-icon://approvals" 
+        app:fcCode="fcCompleteStep">
+        <VBox class="sapUiSmallMargin">
+            <form:SimpleForm editable="true" 
+                layout="ResponsiveGridLayout" 
+                labelSpanXL="3" 
+                labelSpanL="2" 
+                labelSpanM="4" 
+                labelSpanS="12" 
+                adjustLabelSpan="false" 
+                emptySpanXL="0" 
+                emptySpanL="0" 
+                emptySpanM="0" 
+                emptySpanS="0" 
+                columnsXL="1" 
+                columnsL="1" 
+                columnsM="1" 
+                singleContainerFullSize="false">
+                <Label text="{i18n>lbBankCountry}" 
+                    required="true"/>
+                <Input value="{detailView>/BankAccount/BankCountryKey}" 
+                    valueState="{= ${detailView>/BankAccount/BankCountryKey} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeBankCountry">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbBankKey}" 
+                    required="true"/>
+                <Input value="{detailView>/BankAccount/BankIdentification}" 
+                    valueState="{= ${detailView>/BankAccount/BankIdentification} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeBankKey">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbAccountNumber}" 
+                    required="true"/>
+                <Input type="Number" 
+                    placeholder="Enter the digit.." 
+                    value="{detailView>/BankAccount/BankNumber}" 
+                    valueState="{= ${detailView>/BankAccount/BankNumber} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeAccountNumber">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbAccountHolder}" 
+                    required="true"/>
+                <Input value="{detailView>/BankAccount/BankAccountHolderName}" 
+                    valueState="{= ${detailView>/BankAccount/BankAccountHolderName} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeAccountHolder">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbAccountName}"/>
+                <Input value="{detailView>/BankAccount/BankAccountName}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbIBAN}"/>
+                <Input value="{detailView>/BankAccount/IBAN}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbControlKey}"/>
+                <Input value="{detailView>/BankAccount/BankControlKey}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+            </form:SimpleForm>
+        </VBox>
+    </WizardStep>
+</core:FragmentDefinition>

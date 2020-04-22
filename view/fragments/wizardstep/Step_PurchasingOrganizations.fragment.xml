@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <WizardStep id="PurchasingOrganizations" 
+        title="{i18n>tlPurchasingOrganizations}" 
+        nextStep="Companycode" 
+        complete="onPAI" 
+        validated="{detailView>/WizardValidate/PurchasingOrganizations}" 
+        icon="sap-icon://approvals" 
+        app:fcCode="fcCompleteStep">
+        <VBox class="sapUiSmallMargin">
+            <form:SimpleForm editable="true" 
+                layout="ResponsiveGridLayout" 
+                labelSpanXL="3" 
+                labelSpanL="2" 
+                labelSpanM="4" 
+                labelSpanS="12" 
+                adjustLabelSpan="false" 
+                emptySpanXL="0" 
+                emptySpanL="0" 
+                emptySpanM="0" 
+                emptySpanS="0" 
+                columnsXL="1" 
+                columnsL="1" 
+                columnsM="1" 
+                singleContainerFullSize="false">
+                <Label text="{i18n>lbPurchasingOrganizations}" 
+                    required="true"/>
+                <Input value="{detailView>/PurchasingOrganizations/PurchasingOrganization}" 
+                    valueState="{= ${detailView>/PurchasingOrganizations/PurchasingOrganization} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangePurchasingOrg">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbPurchasingGroup}" 
+                    required="true"/>
+                <Input value="{detailView>/PurchasingOrganizations/PurchasingGroup}" 
+                    valueState="{= ${detailView>/PurchasingOrganizations/PurchasingGroup} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangePurchasingGroup">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbOrderCurrency}"/>
+                <Input value="USD">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbTermsofPaymentPur}" 
+                    required="true"/>
+                <Input value="{detailView>/PurchasingOrganizations/PaymentTermsPurchasing}" 
+                    valueState="{= ${detailView>/PurchasingOrganizations/PaymentTermsPurchasing} ? 'None' : 'Error' }" 
+                    change="onPAI" 
+                    app:fcCode="fcChangeTermPaymentP">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbIncoterms}"/>
+                <Input value="{detailView>/PurchasingOrganizations/IncotermsClassification}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbIncotermsLocation1}"/>
+                <Input value="{detailView>/PurchasingOrganizations/IncotermsLocation1}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbIncotermsLocation2}"/>
+                <Input value="{detailView>/PurchasingOrganizations/IncotermsLocation2}">
+                    <layoutData>
+                        <l:GridData span="XL2 L6 M4 S4" />
+                    </layoutData>
+                </Input>
+                <Label text="{i18n>lbGoodsReceipt-BasedInvoiceVerification}"/>
+                <CheckBox selected="{detailView>/PurchasingOrganizations/InvoiceIsGoodsReceiptBased}" />
+            </form:SimpleForm>
+        </VBox>
+    </WizardStep>
+</core:FragmentDefinition>

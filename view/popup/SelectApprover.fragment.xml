@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog resizable="true" 
+        draggable="true" 
+        stretch="false" 
+        busy="{mainView>/busy}" 
+        busyIndicatorDelay="0" 
+        title="{i18n>tlSelectApprover}" 
+        contentWidth="40%">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm editable="false" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="4" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="{i18n>lbSelectApprover}" />
+                        <Select selectedKey="{detailView>/selectApprovertype}" 
+                            change="onPAI" 
+                            app:fcCode="fcSelectApproverType">
+                            <items>
+                                <core:Item key="kim" 
+                                    text="{i18n>fldKim}" />
+                                <core:Item key="lee" 
+                                    text="{i18n>fldLee}" />
+                            </items>
+                        </Select>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="{i18n>btnRequest}" 
+                press="onPAI" 
+                app:fcCode="fcRequset" />
+
+            <Button text="Cancel" 
+                press="onPAI" 
+                app:fcCode="fcCancelSelcApprover" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

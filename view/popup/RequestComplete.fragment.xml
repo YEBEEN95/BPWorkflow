@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog resizable="true" 
+        draggable="true" 
+        raggable="false" 
+        stretch="false" 
+        busy="{mainView>/busy}" 
+        busyIndicatorDelay="0" 
+        title="{i18n>tlRequestCompletePage}" 
+        contentWidth="50rem" 
+        contentHeight="30rem">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <form:SimpleForm editable="true" 
+                    layout="ResponsiveGridLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="2" 
+                    labelSpanM="3" 
+                    labelSpanS="12" 
+                    adjustLabelSpan="false" 
+                    emptySpanXL="0" 
+                    emptySpanL="0" 
+                    emptySpanM="0" 
+                    emptySpanS="0" 
+                    columnsXL="1" 
+                    columnsL="1" 
+                    columnsM="1" 
+                    singleContainerFullSize="false">
+
+                    <Label text="{i18n>lbApprover}"/>
+                    <Input value="{detailView>/selectApprovertype}" 
+                        editable="false">
+
+                    </Input>
+                    <Label text="{i18n>lbRequestingDate}"/>
+                    <Input value="{detailView>/RequestDate}"
+                    editable="false">
+                    </Input>
+
+                    <Label text="{i18n>lbRequestingType}"/>
+                    <Input value="{detailView>/BPType}"
+                    editable="false">
+                    </Input>
+
+                    <Label text="{i18n>lbContents}"/>
+                    <TextArea id="" 
+                        rows="10" 
+                        value="" />
+
+                </form:SimpleForm>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="{i18n>btnSend}" 
+                press="onPAI" 
+                app:fcCode="fcSendReqComplete" />
+
+            <Button text="{i18n>btnCancel}" 
+                press="onPAI" 
+                app:fcCode="fcCancelReqComplete" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

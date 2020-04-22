@@ -1,0 +1,149 @@
+<mvc:View controllerName="sk.siltron.bp.BPWorkflow.controller.Main" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns:core="sap.ui.core" 
+	xmlns:t="sap.ui.table" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns="sap.m" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page id="page" enableScrolling="false">
+		<customHeader>
+			<Toolbar>
+				<html:div class="sk_siltron_logo" />
+				<Text text="{i18n>title}"/>
+			</Toolbar>
+		</customHeader>
+		<IconTabBar id="idIconTabBar" 
+			select="fcIconTabBarSelect" 
+			class="sapUiContentPadding" 
+			backgroundDesign="Translucent" 
+			expandable="false" 
+			expanded="true">
+			<items>
+				<IconTabFilter showAll="true" 
+					count="123" 
+					text="{i18n>iconAll}" 
+					key="All" />
+				<IconTabSeparator />
+				<IconTabFilter icon="sap-icon://cart-5" 
+					iconColor="Neutral" 
+					count="1" 
+					text="{i18n>iconDraft}" 
+					key="Draft" />
+				<IconTabFilter icon="sap-icon://cart-3" 
+					iconColor="Critical" 
+					count="2" 
+					text="{i18n>iconRequesting}" 
+					key="Requesting" />
+				<IconTabFilter icon="sap-icon://cart-approval" 
+					iconColor="Positive" 
+					count="3" 
+					text="{i18n>iconApproval}" 
+					key="Approval" />
+				<IconTabFilter icon="sap-icon://cart-2" 
+					iconColor="Negative" 
+					count="4" 
+					text="{i18n>iconRefusal}" 
+					key="Refusal" />
+			</items>
+			<content>
+				<Table id="tabApproval" 
+					selectionChange="onPAI" 
+					mode="SingleSelectLeft" 
+					alternateRowColors="true" 
+					app:fcCode="fcSelectionChange" 
+					items="{bpReg>/}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="{i18n>tlSearchDate}" 
+									level="H2"/>
+								<DateRangeSelection width="30rem" 
+									dateValue="{mainView>/Approval/fromDate}" 
+									secondDateValue="{mainView>/Approval/toDate}" 
+									displayFormat="MM.dd.yyyy" 
+									required="true"/>
+								<Button text="{i18n>btnSearch}" 
+									width="5rem" 
+									type="Emphasized" 
+									press="onPAI" 
+									app:fcCode="fcSearchApproval"/>
+								<ToolbarSpacer />
+								<Button text="{i18n>btnSearch}" 
+									width="5rem" 
+									type="Accept" 
+									press="onPAI" 
+									app:fcCode="fcSelectVdCsS"/>
+								<Button text="{i18n>btnCreate}" 
+									width="5rem" 
+									type="Accept" 
+									press="onPAI" 
+									app:fcCode="fcSelectVdCsC"/>
+								<Button text="{i18n>btnCreateWithTemplate}" 
+									width="" 
+									type="Accept" 
+									press="onPAI" 
+									app:fcCode="fcSelectVdCsS"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="7em">
+							<Text text="{i18n>fldStatus}" />
+						</Column>
+						<Column width="12em">
+							<Text text="{i18n>fldRequestDate}" />
+						</Column>
+						<Column width="10em">
+							<Text text="{i18n>fldRequestType}" />
+						</Column>
+						<Column width="15em">
+							<Text text="{i18n>fldVendor}" />
+						</Column>
+						<Column width="12em">
+							<Text text="{i18n>fldCellPhone}" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectStatus text="{bpReg>reqStatus}" 
+									state="{ 
+													path: 'bpReg>reqStatus',
+													formatter: '.formatAvailableToObjectState'
+											}" />
+								<Text text="{bpReg>reqDate}" />
+								<Text text="{bpReg>reqType}" />
+								<Text text="{bpReg>bpName}" />
+								<Text text="{bpReg>phoneNumberMobile}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</IconTabBar>
+		<footer>
+			<OverflowToolbar>
+				<Button text="{i18n>btnApproval}" 
+					type="Accept" 
+					press="onPAI" 
+					app:fcCode="fcAccept"/>
+				<Button text="{i18n>btnReject}" 
+					press="onPAI" 
+					app:fcCode="fcReject" 
+					enabled="true" 
+					type="Reject" />
+				<Button text="{i18n>btnEdit}" 
+					press="onPAI" 
+					app:fcCode="fcEdit" 
+					enabled="true" />
+				<Button text="{i18n>btnDelete}" 
+					press="onPAI" 
+					app:fcCode="fcApprovalDelete" 
+					enabled="true" />
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

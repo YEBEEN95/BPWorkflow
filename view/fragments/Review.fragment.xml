@@ -1,0 +1,586 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+  xmlns:mvc="sap.ui.core.mvc" 
+  xmlns="sap.m" 
+  xmlns:t="sap.ui.table" 
+  xmlns:l="sap.ui.layout" 
+  xmlns:form="sap.ui.layout.form" 
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+  <Page title="Review Page" 
+  id="pageBPReview"
+    class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer" 
+    showNavButton="true" 
+    navButtonPress="onPAI">
+    <content>
+      <VBox class="sapUiSmallMargin">
+        <form:SimpleForm title="1.General Data" 
+          editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlGeneralData}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_GeneralData"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbSupplierName}"/>
+          <Input value="{detailView>/GeneralData/Supplier}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbAdditionalSuppliername}" 
+            required="true"/>
+          <Input value="{detailView>/GeneralData/FirstName}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbVendorAccountGroup}"/>
+          <Input value="{detailView>/GeneralData/SupplierAccountGroup}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbBPGrouping}"/>
+          <Input editable="false" 
+            showValueHelp="true" 
+            valueHelpOnly="true" 
+            valueHelpRequest="onF4BPGrouping">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbSearchTerm1}"/>
+          <Input value="{detailView>/GeneralData/SearchTerm1}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+        </form:SimpleForm>
+        <form:SimpleForm editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlAddress}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_Address"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbStreet}" 
+            required="true"/>
+          <Input value="{detailView>/Address/StreetName}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbHouseNumber}" 
+            required="true"/>
+          <Input type="Number" 
+            placeholder="Enter the digit.." 
+            value="{detailView>/Address/HouseNumber}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbPostalCode}" 
+            required="true"/>
+          <Input type="Number" 
+            placeholder="Enter the digit.." 
+            value="{detailView>/Address/PostalCode}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbCity}"/>
+          <Input value="{detailView>/Address/CityName}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbPostalOfficePostalCode}"/>
+          <Input value="{detailView>/Address/POBoxPostalCode}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>PostBox}"/>
+          <Input value="{detailView>/Address/POBox}" 
+            editable="false" 
+            placeholder="Enter the digit..">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>Country}" 
+            required="true" />
+          <Input value="{detailView>/Address/Country}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbRegion}" 
+            required="true" />
+          <Input value="{detailView>/Address/Region}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbTaxJurisdictionCode}" 
+            required="true"/>
+          <Input value="{detailView>/Address/TaxJurisdiction}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+        </form:SimpleForm>
+        <form:SimpleForm editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlStandardCommunication}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_StdrdCommunication"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbLanguage}"/>
+          <Input value="EN" 
+            editable="false" 
+            showValueHelp="true" 
+            valueHelpOnly="true" 
+            valueHelpRequest="onF4Language">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbCellPhoneCountry}" 
+            required="true"/>
+          <Input value="{detailView>/StandardCommunication/DestLocationCountryCellPhone}" 
+            editable="false" 
+            placeholder="EN">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbCellPhone}"/>
+          <Input value="{detailView>/StandardCommunication/CellPhoneNumber}" 
+            editable="false" 
+            placeholder="Enter the digit..">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbFaxCountry}"/>
+          <Input value="{detailView>/StandardCommunication/FaxCountry}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbTelephoneCountry}"/>
+          <Input value="{detailView>/StandardCommunication/DestLocationCountryTelephone}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbTelephone}"/>
+          <Input value="{detailView>/StandardCommunication/TelePhoneNumber}" 
+            editable="false" 
+            placeholder="Enter the digit..">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbEmail}"/>
+          <Input type="Email" 
+            value="{detailView>/StandardCommunication/EmailAddress}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+        </form:SimpleForm>
+        <form:SimpleForm editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlBankAccount}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_BankAccount"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbBankCountry}" 
+            required="true"/>
+          <Input value="{detailView>/BankAccount/BankCountryKey}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbBankKey}" 
+            required="true"/>
+          <Input value="{detailView>/BankAccount/BankIdentification}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbAccountNumber}" 
+            required="true"/>
+          <Input type="Number" 
+            placeholder="Enter the digit.." 
+            value="{detailView>/BankAccount/BankNumber}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbAccountHolder}" 
+            required="true"/>
+          <Input value="{detailView>/BankAccount/BankAccountHolderName}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbAccountName}"/>
+          <Input value="{detailView>/BankAccount/BankAccountName}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbIBAN}"/>
+          <Input value="{detailView>/BankAccount/IBAN}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbControlKey}"/>
+          <Input value="{detailView>/BankAccount/BankControlKey}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+        </form:SimpleForm>
+        <form:SimpleForm editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlPaymentTerms}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_PaymentTerms"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbTermsofPayment}" 
+            required="true"/>
+          <Input value="{detailView>/PaymentTerms/FldPaymentTerms}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+        </form:SimpleForm>
+        <form:SimpleForm editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlTaxNumbers}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_TaxNumbers"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbTaxCategory}"/>
+          <Input value="{detailView>/TaxNumbers/BPTaxType}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbTaxNumber}"/>
+          <Input value="{detailView>/TaxNumbers/BPTaxNumber}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+        </form:SimpleForm>
+        <form:SimpleForm editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlPurchasingOrganizations}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_PurchasingOrg"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbPurchasingOrganizations}" 
+            required="true"/>
+          <Input value="{detailView>/PurchasingOrganizations/PurchasingOrganization}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbPurchasingGroup}" 
+            required="true"/>
+          <Input value="{detailView>/PurchasingOrganizations/PurchasingGroup}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbOrderCurrency}"/>
+          <Input value="USD" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbTermsofPaymentPur}" 
+            required="true"/>
+          <Input value="{detailView>/PurchasingOrganizations/PaymentTermsPurchasing}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbIncoterms}"/>
+          <Input value="{detailView>/PurchasingOrganizations/IncotermsClassification}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbIncotermsLocation1}"/>
+          <Input value="{detailView>/PurchasingOrganizations/IncotermsLocation1}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbIncotermsLocation2}"/>
+          <Input value="{detailView>/PurchasingOrganizations/IncotermsLocation2}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbIncotermsLocation1}"/>
+          <CheckBox selected="{detailView>/PurchasingOrganizations/InvoiceIsGoodsReceiptBased}" 
+            editable="false" />
+        </form:SimpleForm>
+        <form:SimpleForm editable="true" 
+          layout="ResponsiveGridLayout" 
+          labelSpanXL="3" 
+          labelSpanL="2" 
+          labelSpanM="4" 
+          labelSpanS="12" 
+          adjustLabelSpan="false" 
+          emptySpanXL="0" 
+          emptySpanL="0" 
+          emptySpanM="0" 
+          emptySpanS="0" 
+          columnsXL="1" 
+          columnsL="1" 
+          columnsM="1" 
+          singleContainerFullSize="false">
+          <form:toolbar>
+            <Toolbar>
+              <Title text="{i18n>tlCompanyCode}"/>
+              <ToolbarSpacer />
+              <Button text="Edit" 
+                icon="sap-icon://edit" 
+                press="onPAI" 
+                enabled="{detailView>/status/editable}"
+                app:fcCode="fcBackWizard_CompanyCode"/>
+            </Toolbar>
+          </form:toolbar>
+          <Label text="{i18n>lbReconciliationAccount}"/>
+          <Input value="{detailView>/Companycode/ReconciliationAccount}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+          <Label text="{i18n>lbTermsofPaymentAc}"/>
+          <Input value="{detailView>/Companycode/PaymentTermsAccount}" 
+            editable="false">
+            <layoutData>
+              <l:GridData span="XL2 L6 M4 S4" />
+            </layoutData>
+          </Input>
+        </form:SimpleForm>
+      </VBox>
+    </content>
+    <customData>
+      <core:CustomData key="fcCode" 
+        value="fcDetailNav" 
+        writeToDom="true"/>
+    </customData>
+    <footer>
+      <OverflowToolbar>
+        <Button text="{i18n>btnSubmitCreate}" 
+          type="Emphasized" 
+          visible="{detailView>/status/submitCreatebtn}" 
+          press="onPAI" 
+          app:fcCode="fcSubmit" />
+        <Button text="{i18n>btnSubmitModification}" 
+          type="Emphasized" 
+          visible="{detailView>/status/submitModibtn}"
+          press="onPAI" 
+          app:fcCode="fcSubmit" />
+          <Button text="{i18n>btnApproval}" 
+                press="onPAI" 
+                type="Success"
+                visible="{detailView>/status/approvalbtn}"
+                app:fcCode="fcSubmitApproval" />
+            <Button text="{i18n>btnReject}" 
+                press="onPAI" 
+                type="Negative"
+                visible="{detailView>/status/approvalbtn}"
+                app:fcCode="fcSubmitReject" />
+                <ToolbarSpacer />
+        <Button text="{i18n>btnDelete}" 
+          type="Emphasized" 
+          press="onPAI" 
+          visible="{detailView>/status/deletebtn}"
+          app:fcCode="fcSubmitDelete" />
+      </OverflowToolbar>
+    </footer>
+  </Page>
+
+</core:FragmentDefinition>

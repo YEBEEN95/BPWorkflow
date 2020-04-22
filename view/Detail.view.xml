@@ -1,0 +1,47 @@
+<mvc:View controllerName="sk.siltron.bp.BPWorkflow.controller.Detail" 
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:u="sap.ui.unified" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<NavContainer id="wizardNavContainer">
+			<Page id="wizardContentPage" 
+				showHeader="false">
+				<content>
+					<Wizard id="CreateWizard" 
+						complete="onPAI"
+						stepActivate="false" 
+						showNextButton="true" 
+						finishButtonText="Examine">
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_GeneralData" type="XML" />
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_Address" type="XML" />
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_StandardCommunication" type="XML" />
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_BankAccount" type="XML" />
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_PaymentTerms" type="XML" />
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_TaxNumbers" type="XML" />
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_PurchasingOrganizations" type="XML" />
+						<core:Fragment fragmentName="sk.siltron.bp.BPWorkflow.view.fragments.wizardstep.Step_CompanyCode" type="XML" />
+						<customData>
+							<core:CustomData key="fcCode" 
+								value="fcComplete" 
+								writeToDom="true"/>
+						</customData>
+					</Wizard>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>btnSave}" 
+							type="Emphasized" 
+							press="onPAI" 
+							app:fcCode="fcDetailSave"/>
+						<Button text="{i18n>btnCancel}" 
+							press="onPAI" 
+							app:fcCode="fcDetailCancel"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+	</NavContainer>
+</mvc:View>

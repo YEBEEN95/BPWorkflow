@@ -1,0 +1,166 @@
+<mvc:View controllerName="sk.siltron.bp.BPWorkflow.controller.Main" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns:core="sap.ui.core" 
+	xmlns:t="sap.ui.table" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns="sap.m" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page id="pageMain">
+		<customHeader>
+			<Toolbar>
+				<html:div class="sk_siltron_logo" />
+				<Label text="{i18n>title}"
+				design="Bold"/>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<IconTabBar id="idIconTabBar" 
+				select="onPAI" 
+				class="sapUiContentPadding" 
+				stretchContentHeight="true" 
+				backgroundDesign="Translucent" 
+				expandable="false" 
+				expanded="true" 
+				selectedKey="{mainView>/condition/iconKey}" 
+				app:fcCode="fcIconFilter">
+				<items>
+					<IconTabFilter showAll="true" 
+						count="{mainView>/statusCount/total}" 
+						text="{i18n>iconAll}" 
+						key="T" />
+					<IconTabSeparator />
+					<IconTabFilter icon="sap-icon://cart-5" 
+						iconColor="Neutral" 
+						count="{mainView>/statusCount/draft}" 
+						text="{i18n>iconDraft}" 
+						key="D" />
+					<IconTabFilter icon="sap-icon://cart-3" 
+						iconColor="Positive" 
+						count="{mainView>/statusCount/request}" 
+						text="{i18n>iconRequesting}" 
+						key="R" />
+					<IconTabFilter icon="sap-icon://cart-2" 
+						iconColor="Negative" 
+						count="{mainView>/statusCount/reject}" 
+						text="{i18n>iconReject}" 
+						key="J" />
+						<IconTabFilter icon="sap-icon://cart-approval" 
+						count="{mainView>/statusCount/approval}" 
+						text="{i18n>iconApproval}" 
+						key="A" />
+					<IconTabFilter icon="sap-icon://cart" 
+						iconColor="Critical" 
+						count="{mainView>/statusCount/cancel}" 
+						text="{i18n>iconCancel}" 
+						key="C" />
+				</items>
+				<content>
+					<ScrollContainer height="100%" 
+						width="100%" 
+						vertical="true" 
+						focusable="true">
+						<Table id="tabBPRegistration" 
+							sticky="{mainView>/stickyOptions}" 
+							itemPress="onPAI" 
+							mode="None"  
+							alternateRowColors="true" 
+							app:fcCode="fcReviewToSubmit" 
+							items="{bpReg>/}">
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title text="{i18n>tlSearchDate}" 
+											level="H2"/>
+										<DateRangeSelection width="30rem" 
+											dateValue="{mainView>/condition/fromDate}" 
+											secondDateValue="{mainView>/condition/toDate}" 
+											displayFormat="MM.dd.yyyy" 
+											required="true"/>
+										<Button text="{i18n>btnSearch}" 
+											width="5rem" 
+											type="Emphasized" 
+											press="onPAI" 
+											app:fcCode="fcSearchBPRegistration"/>
+										<ToolbarSpacer />
+										<Button text="{i18n>btnFindChangeBP}" 
+											type="Accept" 
+											press="onPAI" 
+											app:fcCode="fcSelectBPTypeSearch"/>
+
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="7em">
+									<Text text="{i18n>fldStatus}" />
+								</Column>
+								<Column width="12em">
+									<Text text="{i18n>fldRequestDate}" />
+								</Column>
+								<Column width="10em">
+									<Text text="{i18n>fldRequestType}" />
+								</Column>
+								<Column width="15em">
+									<Text text="{i18n>fldBusinessPartner}" />
+								</Column>
+								<Column width="12em">
+									<Text text="{i18n>fldCellPhone}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="Navigation">
+									<cells>
+										<ObjectStatus state="{ 
+												path: 'bpReg>reqStatus',
+												formatter: '.getReqStatusState'}" 
+											text="{
+												path: 'bpReg>reqStatus',
+												formatter: '.getReqStatusText'}" 
+											inverted="{= ${bpReg>reqStatus} === 'J' || ${bpReg>reqStatus} === 'A' ? true : false }"/>
+										<Text text="{
+												path: 'bpReg>reqDate',
+												type: 'sap.ui.model.type.Date',
+												formatOptions: {
+													style: 'medium',
+													source: {
+														pattern: 'yyyy-MM-ddThh:mm:ssZ'
+													}
+												}
+											}"/>
+										<Text text="{bpReg>reqType}" />
+										<Text text="{bpReg>bpName}" />
+										<Text text="{bpReg>phoneNumberMobile}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</IconTabBar>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<Button text="{i18n>btnCreate}" 
+					width="5rem" 
+					type="Accept" 
+					press="onPAI" 
+					app:fcCode="fcSelectBPTypeCreate"/>
+				<Button text="{i18n>btnCreateWithTemplate}" 
+					type="Accept" 
+					press="onPAI" 
+					app:fcCode="fcCreatewithTemplate"/>
+				<ToolbarSpacer />
+				<Button icon="sap-icon://alert" 
+					text="{i18n>btnMessage} : {= ${message>/}.length }" 
+					visible="true" 
+					type="Critical" 
+					enabled="{= ${message>/}.length === 0 ? false : true }" 
+					press="onPAI" 
+					app:fcCode="fcMessage"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>
