@@ -871,7 +871,7 @@
               "uri": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartnerAddress(BusinessPartner='11',AddressID='27512')",
               "type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
             },
-            "BusinessPartner": "11",
+            "BusinessPartner": "1000000",
             "AddressID": "27512",
             "ValidityStartDate": "/Date(1527206400000+0000)/",
             "ValidityEndDate": "/Date(253402300799000+0000)/",
